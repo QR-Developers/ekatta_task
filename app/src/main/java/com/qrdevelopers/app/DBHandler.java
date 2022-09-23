@@ -47,29 +47,28 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    public long getCount() {
-        SQLiteDatabase db = this.getReadableDatabase();
-        long count = DatabaseUtils.queryNumEntries(db, TABLE_NAME);
-        db.close();
-        return count;
-    }
 
     public ArrayList<User> getUserList() {
-        SQLiteDatabase db = this.getReadableDatabase();
+        SQLiteDatabase db = this.getWritableDatabase();
         ArrayList<User> userList = new ArrayList<>();
-        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME+" ORDER BY id", null);
+
+        Log.d("DBRetrive","Cursor: "+cursor.getCount());
+
 
         if (cursor.moveToFirst()) {
-            while (cursor.isAfterLast()) {
-//                String name = cursor.getString(cursor.getColumnIndex("name"));
-//                String mobile = cursor.getString(cursor.getColumnIndex("mobile"));
-                String name = cursor.getString(2);
-                String mobile = cursor.getString(3);
+            while (!cursor.isAfterLast()) {
+                String name = cursor.getString(cursor.getColumnIndexOrThrow("name"));
+                String mobile = cursor.getString(cursor.getColumnIndexOrThrow("mobile"));
+//                String name = cursor.getString(1).toString();
+//                String mobile = cursor.getString(2).toString();
+                Log.d("DBRetrive","Name: "+name);
+                Log.d("DBRetrive","Mobile: "+mobile);
                 userList.add(new User(name, mobile));
                 cursor.moveToNext();
             }
         }
-        cursor.close();
+//        cursor.close();
         db.close();
         return userList;
     }

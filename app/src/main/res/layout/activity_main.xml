@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="20dp"
+    android:layout_margin="30dp"
     android:gravity="center_horizontal"
     android:orientation="vertical"
     tools:context=".MainActivity">
@@ -13,6 +13,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:text="Ekatta"
         android:textColor="@color/blue"
         android:textSize="35sp"
@@ -24,14 +25,23 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:hint="Name"
+        android:imeOptions="actionNext"
+        android:inputType="text"
+        android:maxLines="1"
+        android:lines="1"
         android:textColor="@color/black" />
 
     <EditText
         android:id="@+id/et_user_mobile"
         android:layout_width="250dp"
-        android:layout_marginTop="10dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:hint="Mobile"
+        android:inputType="number"
+        android:imeOptions="actionDone"
+        android:maxLines="1"
+        android:maxLength="10"
+        android:lines="1"
         android:textColor="@color/black" />
 
     <LinearLayout
@@ -45,19 +55,47 @@
             android:id="@+id/btn_add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ADD"/>
+            android:text="ADD" />
 
         <Button
             android:id="@+id/btn_delete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
-            android:text="DELETE"/>
+            android:text="DELETE" />
     </LinearLayout>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:minHeight="100dp"
+        android:layout_margin="30dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardElevation="0dp"
+        app:cardCornerRadius="10dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_no_record"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="No Records Found"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_uers_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"/>
+        android:visibility="gone"
+        android:layout_margin="10dp"/>
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
 </LinearLayout>
