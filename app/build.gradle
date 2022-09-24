@@ -3,6 +3,14 @@ plugins {
 }
 
 android {
+    signingConfigs {
+        debug {
+            storeFile file('E:\\Rehan\\College\\Projects\\EXTRA\\github\\QR_Developers\\ekatta_task\\debugKey.jks')
+            storePassword 'DTech@123$%^'
+            keyAlias 'debug'
+            keyPassword 'DTech@123$%^'
+        }
+    }
     compileSdkVersion 32
 //    buildToolsVersion "33.0.0"
 
